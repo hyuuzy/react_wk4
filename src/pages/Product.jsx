@@ -1,4 +1,5 @@
 import { useParams } from 'react-router'
+import { Helmet } from "react-helmet-async"
 import Header from '../components/Header'
 import Footer from '../components/Footer/index'
 import ProductDetail from '../components/ProductDetail'
@@ -9,16 +10,23 @@ function Product() {
     const product = products.find(
         (x) => x.id === Number(productId)
     )
-
+    const title = "Product Detail";
+    
     return (
-        <div data-theme="luxury"  className="container mx-auto main-layout ">
-            <Header
-                title="Book Detail"
-                slogan=""
-            />
-            <ProductDetail product={product} className="content" />
-            <Footer className="footer" />
-        </div>
+        <div>
+        <div className="container mx-auto main-layout">
+           <Helmet>
+              <title>{title}</title>
+           </Helmet>
+           <Header
+              title={title}
+              slogan="THe Good place to buy your favorite products"
+           />
+           <ProductDetail product={product} className="content" />
+        </div>        
+        <Footer className="footer" /> 
+     </div>
+
     )
 }
 
